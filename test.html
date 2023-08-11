@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>포스팅과 코멘트 관리 사이트</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style>
+      /* styles.css */
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      h2 {
+        margin-top: 20px;
+      }
+
+      #postTitle,
+      #postContent {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+
+      button {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #f9f9f9;
+      }
+
+      .card-header {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .comment-list {
+        padding-left: 20px;
+      }
+
+      .comment-list li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>포스팅과 코멘트 관리</h1>
+
+    <h2>포스팅 추가</h2>
+    <input type="text" id="postTitle" placeholder="제목" />
+    <textarea id="postContent" placeholder="내용"></textarea>
+    <button onclick="addPost()">포스팅 추가</button>
+
+    <h2>포스팅 목록</h2>
+    <ul id="postList"></ul>
+
+    <script src="script.js"></script>
+  </body>
+</html>

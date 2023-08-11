@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>커뮤니티 사이트</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .post {
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+      .comment {
+        border: 1px solid #ddd;
+        margin-top: 10px;
+        padding: 5px;
+      }
+      .deleteButton {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 3px 6px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin-top: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>커뮤니티 사이트</h1>
+    </header>
+    <h2>게시물 목록</h2>
+    <div class="container">
+      <div class="post">
+        <h3>첫 번째 게시물 제목</h3>
+        <p>첫 번째 게시물 내용...</p>
+        <button class="deleteButton">삭제</button>
+        <button class="addComment">코멘트 추가</button>
+        <div class="comments"></div>
+      </div>
+      <div class="post">
+        <h3>두 번째 게시물 제목</h3>
+        <p>두 번째 게시물 내용...</p>
+        <button class="deleteButton">삭제</button>
+        <button class="addComment">코멘트 추가</button>
+        <div class="comments"></div>
+      </div>
+    </div>
+    <div class="container">
+      <h2>새로운 게시물 작성</h2>
+      <form id="postForm">
+        <label for="title">제목:</label>
+        <input type="text" id="title" name="title" required /><br />
+        <label for="content">내용:</label><br />
+        <textarea
+          id="content"
+          name="content"
+          rows="4"
+          cols="50"
+          required
+        ></textarea
+        ><br />
+        <button type="button" id="createPost">게시</button>
+      </form>
+    </div>
+    <script>
+      const createPostButton = document.getElementById("createPost");
+      createPostButton.addEventListener("click", createNewPost);
+
+      function createNewPost() {
+        const titleInput = document.getElementById("title");
+        const contentInput = document.getElementById("content");
+
+        const title = titleInput.value;
+        const content = contentInput.value;
+
+        if (title && content) {
+          const postContainer = document.querySelector(".container");
+          const newPost = document.createElement("div");
+          newPost.className = "post";
+          newPost.innerHTML = `
+        <h3>${title}</h3>
+        <p>${content}</p>
+        <button class="deleteButton">삭제</button>
+        <button class="addComment">코멘트 추가</button>
+        <div class="comments">
+          <!-- 코멘트가 여기에 추가됩니다. -->
+        </div>
+      `;
+
+          postContainer.insertBefore(newPost, postContainer.firstChild);
+
+          titleInput.value = "";
+          contentInput.value = "";
+
+          addDeleteButtonEvent(newPost);
+          addCommentButtonEvent(newPost);
+        }
+      }
+
+      function addDeleteButtonEvent(postElement) {
+        const deleteButton = postElement.querySelector(".deleteButton");
+        deleteButton.addEventListener("click", function () {
+          postElement.remove();
+        });
+      }
+
+      function addCommentButtonEvent(postElement) {
+        const addCommentButton = postElement.querySelector(".addComment");
+        const commentsContainer = postElement.querySelector(".comments");
+
+        addCommentButton.addEventListener("click", function () {
+          const commentText = prompt("코멘트를 입력하세요:");
+          if (commentText) {
+            const newComment = document.createElement("div");
+            newComment.className = "comment";
+            newComment.innerHTML = `
+          <p>${commentText}</p>
+          <button class="deleteButton">삭제</button>
+          <button class="editButton">수정</button>
+        `;
+
+            commentsContainer.appendChild(newComment);
+            addCommentDeleteButtonEvent(newComment);
+            addCommentEditButtonEvent(newComment);
+          }
+        });
+      }
+
+      function addCommentDeleteButtonEvent(commentElement) {
+        const deleteButton = commentElement.querySelector(".deleteButton");
+        deleteButton.addEventListener("click", function () {
+          commentElement.remove();
+        });
+      }
+
+      function addCommentEditButtonEvent(commentElement) {
+        const editButton = commentElement.querySelector(".editButton");
+        const commentText = commentElement.querySelector("p");
+        editButton.addEventListener("click", function () {
+          const newText = prompt(
+            "코멘트를 수정하세요:",
+            commentText.textContent
+          );
+          if (newText) {
+            commentText.textContent = newText;
+          }
+        });
+      }
+
+      const existingPosts = document.querySelectorAll(".post");
+      existingPosts.forEach(function (post) {
+        addDeleteButtonEvent(post);
+        addCommentButtonEvent(post);
+        const existingComments = post.querySelectorAll(".comment");
+        existingComments.forEach(function (comment) {
+          addCommentDeleteButtonEvent(comment);
+          addCommentEditButtonEvent(comment);
+        });
+      });
+    </script>
+  </body>
+</html>
