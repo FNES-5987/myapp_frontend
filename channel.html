@@ -4,12 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Posting</title>
+    <style>
+      .channel-body {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      table {
+        width: 100vh;
+        border-bottom: 3px solid black;
+        border-top: 3px solid black;
+      }
+
+      tr {
+        border-bottom: 1px solid black;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <h1>
-        <a href="http://127.0.0.1:5500/CreatePost.html">포스트 작성</a>
-      </h1>
+    <div class="channel-body">
+      <div class="create-post-button">
+        <button>
+          <a href="http://127.0.0.1:5500/post-create.html">포스트 작성</a>
+        </button>
+      </div>
+
+      <div class="main-area">
+        <table class="post-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Title Name</th>
+              <th>Creator Name</th>
+              <th>Created Time</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   </body>
 </html>

@@ -4,13 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CreatePost</title>
+    <style>
+      .container {
+        width: 1080px;
+        margin: 0 auto;
+      }
+      textarea {
+        width: 100%;
+      }
+      .content-body > textarea {
+        height: 400px;
+      }
+    </style>
   </head>
   <body>
-    <form>
-      <input type="text" placeholder="제목" /><br />
-      <textarea name="" id="" cols="30" rows="10"></textarea><br />
-      <button>post</button>
-      <br />
-    </form>
+    <section class="container">
+      <div class="wirting-header">
+        <h2 class="title">포스트 생성</h2>
+      </div>
+      <hr />
+      <div class="writing">
+        <div class="writing-title">
+          <textarea
+            placeholder="제목을 입력해주세요"
+            class="textareainput"
+          ></textarea>
+        </div>
+        <div class="writing-content">
+          <header class="content-header">
+            <!-- 파일, 이미지, 비디오 삽입, 폰트사이즈 변경 등등 들어갈 예정 -->
+          </header>
+          <div class="content-body">
+            <textarea placeholder="내용을 입력하세요"></textarea>
+            <a href="#" role="button" class="postbutton"> POST </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="post-create.js"></script>
   </body>
 </html>
