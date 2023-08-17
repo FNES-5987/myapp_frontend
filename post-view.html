@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostView</title>
+    <style>
+      .post-area {
+        width: 1080px;
+        margin: 0 auto;
+      }
+      .post-body {
+        width: 80%;
+        border: 1px solid black;
+        margin: 0 auto;
+        padding: 25px;
+      }
+      .comment-box {
+        padding: 12px 23px 15px 0;
+      }
+      .comment-text {
+        padding-left: 15px;
+      }
+      .comment-info {
+        padding-left: 15px;
+        font-size: 13px;
+      }
+      .comment-input {
+        width: 90%;
+        margin: 0 auto;
+        border: 1px solid black;
+        padding-left: 10px;
+      }
+      .comment-input > textarea {
+        width: 90%;
+        margin: 0 auto;
+      }
+      .channel-box {
+        width: 80%;
+        padding: 25px;
+        margin: 0 auto;
+      }
+      table {
+        width: 100%;
+        border-bottom: 3px solid black;
+        border-top: 3px solid black;
+        table-layout: fixed;
+      }
+      tr {
+        height: fit-content;
+        padding: 10px 0 8px 4px;
+      }
+      td {
+        text-align: left;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="post-area">
+      <div class="post-body">
+        <!-- 예시 -->
+        <a href="http://127.0.0.1:5500/Channel.html">Channel_1</a>
+        <h3 class="title">제목</h3>
+        <div class="post-info">
+          <p>PostcreatorName</p>
+          <small class="comment-count">댓글 *</small>
+          <small>createdTime</small>
+        </div>
+        <hr />
+        <div class="post-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam ex
+          exercitationem, eius, consequuntur quaerat incidunt facere a
+          accusantium, architecto dicta magnam natus non optio pariatur esse ab.
+          Ipsum ducimus qui repellat. Repellendus molestiae quo dolorem minus
+          asperiores ut non. Fugit vero deleniti excepturi porro odit eveniet,
+          voluptate ab consectetur corporis!
+          <hr />
+        </div>
+        <br />
+        <div class="comment-body">
+          <div class="comment-area">
+            <div class="comment-box">
+              <div class="comment-creator-name">CommentCreatorName</div>
+              <div class="comment-text">Lorem, ipsum dolor.</div>
+              <div class="comment-info">createdTime</div>
+            </div>
+          </div>
+          <div class="comment-input">
+            <p><small>creatorName</small></p>
+            <textarea></textarea>
+            <button class="btn-comment">UP</button>
+          </div>
+        </div>
+        <button class="btn-modify">modify</button>
+        <button class="btn-remove">remove</button>
+      </div>
+      <div class="channel-box">
+        <h3>Channel1's Post</h3>
+        <div class="post-list">
+          <table>
+            <tr>
+              <td>Post5</td>
+              <td>PostCreatorName</td>
+              <td>createdTime</td>
+            </tr>
+            <tr>
+              <td>Post4 [2]</td>
+              <td>PostCreatorName</td>
+              <td>createdTime</td>
+            </tr>
+            <tr>
+              <td>Post3 [1]</td>
+              <td>PostCreatorName</td>
+              <td>createdTime</td>
+            </tr>
+            <tr>
+              <td>Post2 [1]</td>
+              <td>PostCreatorName</td>
+              <td>createdTime</td>
+            </tr>
+            <tr>
+              <td>Post1 [3]</td>
+              <td>PostCreatorName</td>
+              <td>createdTime</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

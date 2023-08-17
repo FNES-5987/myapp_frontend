@@ -19,27 +19,29 @@
   </head>
   <body>
     <section class="container">
-      <div class="wirting-header">
-        <h2 class="title">포스트 생성</h2>
-      </div>
-      <hr />
-      <div class="writing">
-        <div class="writing-title">
-          <textarea
-            placeholder="제목을 입력해주세요"
-            class="textareainput"
-          ></textarea>
+      <form>
+        <div class="wirting-header">
+          <h2 class="title">포스트 생성</h2>
         </div>
-        <div class="writing-content">
-          <header class="content-header">
-            <!-- 파일, 이미지, 비디오 삽입, 폰트사이즈 변경 등등 들어갈 예정 -->
-          </header>
-          <div class="content-body">
-            <textarea placeholder="내용을 입력하세요"></textarea>
-            <a href="#" role="button" class="postbutton"> POST </a>
+        <hr />
+        <div class="writing">
+          <div class="writing-title">
+            <textarea
+              placeholder="제목을 입력해주세요"
+              class="textareainput"
+            ></textarea>
+          </div>
+          <div class="writing-content">
+            <header class="content-header">
+              <!-- 파일, 이미지, 비디오 삽입, 폰트사이즈 변경 등등 들어갈 예정 -->
+            </header>
+            <div class="content-body">
+              <textarea placeholder="내용을 입력하세요"></textarea>
+            </div>
           </div>
         </div>
-      </div>
+        <button class="post-button">POST</button>
+      </form>
     </section>
     <script src="post-create.js"></script>
   </body>

@@ -3,32 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Posting</title>
+    <title>Channel</title>
     <style>
+      .create-post-button {
+        text-align: right;
+      }
       .channel-body {
         width: 80%;
         margin: 0 auto;
       }
 
       table {
-        width: 100vh;
+        width: 100%;
         border-bottom: 3px solid black;
         border-top: 3px solid black;
+        table-layout: fixed;
       }
-
-      tr {
-        border-bottom: 1px solid black;
+      th {
+        height: 40px;
+      }
+      td {
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <div class="channel-body">
-      <div class="create-post-button">
-        <button>
-          <a href="http://127.0.0.1:5500/post-create.html">포스트 작성</a>
-        </button>
-      </div>
-
       <div class="main-area">
         <table class="post-table">
           <thead>
@@ -39,9 +39,24 @@
               <th>Created Time</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <td>1</td>
+            <td><a href="#">제목</a></td>
+            <td>익명</td>
+            <td></td>
+          </tbody>
         </table>
       </div>
+
+      <div class="create-post-button">
+        <button>
+          <a href="http://127.0.0.1:5500/post-create.html">포스트 작성</a>
+        </button>
+      </div>
+      <footer>
+        <hr />
+        <h5>관리자 이메일 : maystar5987@gmail.com</h5>
+      </footer>
     </div>
   </body>
 </html>
