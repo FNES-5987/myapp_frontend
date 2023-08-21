@@ -37,6 +37,7 @@ function tableTemplate(item) {
 
   const data = Array.from(result);
 
+  // 최신순 정렬
   data
     .sort((a, b) => a.no - b.no)
     .forEach((item) => {
@@ -48,16 +49,20 @@ function tableTemplate(item) {
 
 // 뷰 페이지 추가
 (() => {
-  const form = document.form;
+  const form = document.forms[0];
   const post = form.querySelector("button");
-  const title = form.querySelector("textarea[0]");
-  const content = form.querySelector("textarea[1]");
 
   post.addEventListener("click", async (e) => {
     e.preventDefault();
 
+    const title = form.getElementsByClassName("input-title");
+    const content = form.getElementsByClassName("input-content");
+
+    console.log(title.value);
+    console.log(content.value);
+
     const response = await fetch(
-      "http://localhost:8080/posts",
+      "http://localhost:8080/posts/",
       {
         method: "POST",
         headers: {
@@ -73,51 +78,35 @@ function tableTemplate(item) {
 
     const result = await response.json();
     console.log(result);
-
-    document.forms[2].insertAdjacentHTML(
-      "afterend",
-      cardTemplate(result.data)
-    );
   });
 })();
 
-// 채널 테이블 추가
-(async()=>{
-  const table = document.querySelector("table")
-  const tr = table.querySelector("tr")
+// // 채널 테이블 추가
+// (async()=>{
+//   const table = document.querySelector("table")
+//   const tr = table.querySelector("tr")
 
-  const response = await fetch(
-    "http://localhost:8080/posts",
-    {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title.value,
-        creatorName: creatorName.value,
-      }),
-    }
-  );
-  console.log(response);
-
-  const result = await response.json();
-  console.log(result);
-  document.table.insertAdjacentHTML(
-    "afterend",
-    tableTemplate(result.data)
-  );
-})()
-
-// // 삭제
-// (() => {
-//   document.body.addEventListener("click", (e) => { 
-//     if (
-//       e.target.classList.contains("btn-remove")
-//     ) {
-//       /** @type {HTMLButtonElement} */
-//       const removeBtn = e.target;
-//       removeBtn.parentElement.remove();
+//   const response = await fetch(
+//     "http://localhost:8080/posts",
+//     {
+//       method: "POST",
+//       headers: {
+//         "content-type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         no: no.value,
+//         title: title.value,
+//         creatorName: creatorName.value,
+//         createdTime: createdTime.value,
+//       }),
 //     }
-//   });
+//   );
+//   console.log(response);
+
+//   const result = await response.json();
+//   console.log(result);
+//   document.table.insertAdjacentHTML(
+//     "afterend",
+//     tableTemplate(result.data)
+//   );
 // })();
