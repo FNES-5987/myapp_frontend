@@ -3,41 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-      }
-      form {
-        display: inline-block;
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin-top: 20px;
-      }
-    </style>
+    <title>회원 가입</title>
+    <link rel="stylesheet" href="login-styles.css" />
   </head>
   <body>
-    <h1>Sign Up</h1>
-
-    <!-- 회원가입 폼 -->
-    <form id="signupForm">
-      <input
-        type="text"
-        name="newUsername"
-        placeholder="New Username"
-        required
-      /><br />
-      <input
-        type="password"
-        name="newPassword"
-        placeholder="New Password"
-        required
-      /><br />
-      <button type="submit">Sign Up</button>
-    </form>
-
-    <!-- 분리된 JavaScript 파일 로드 -->
-    <script src="signup.js"></script>
+    <div class="container">
+      <h2>회원 가입</h2>
+      <form>
+        <label for="new-username">아이디:</label>
+        <input type="text" id="new-username" name="new-username" required />
+        <label for="new-password">비밀번호:</label>
+        <input type="password" id="new-password" name="new-password" required />
+        <label for="confirm-password">비밀번호 확인:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          required
+        />
+        <button type="submit">가입하기</button>
+      </form>
+      <p>이미 회원이신가요? <a href="login.html">로그인</a></p>
+    </div>
   </body>
 </html>
