@@ -7,6 +7,7 @@
   header.style.textAlign = "center";
   header.style.border = "1px solid black";
   header.style.gridArea = "header";
+  header.style.marginTop = "30px";
 
   header.innerHTML = /*html */ `
     <a href="http://127.0.0.1:5500/channel.html"><img style
@@ -16,5 +17,6 @@
     alt="배너"/></a>
   `;
 
+  
   document.body.prepend(header);
 })()

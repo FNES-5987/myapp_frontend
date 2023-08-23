@@ -1,5 +1,8 @@
 (()=>{
   const footer = document.createElement("div");
+  footer.style.position = "sticky";
+  footer.style.gridArea = "footer";
+
   footer.innerHTML = /*html */ `
   <hr />
         <address>

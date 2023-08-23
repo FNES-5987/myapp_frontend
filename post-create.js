@@ -49,14 +49,20 @@ function tableTemplate(item) {
 
 // 뷰 페이지 추가
 (() => {
-  const form = document.querySelector("#post-form");
-  const post = form.querySelector("button");
+  const form = document.querySelector("post-form");
+  const post = document.getElementsByClassName("post-button");
 
-  post.addEventListener("click", async (e) => {
+  post[0].addEventListener("click", async (e) => {
     e.preventDefault();
 
-    const title = form.querySelector(".input-title").value;
-    const content = form.querySelector(".input-content").value;
+    const title = document.getElementsByClassName("input-title");
+    const content = document.getElementsByClassName("input-content");
+
+    console.log(title[0].value);
+    console.log(content[0].value);
+
+    const titleVal = title[0].value;
+    const contentVal = content[0].vlaue;
 
     const response = await fetch(
       "http://localhost:8080/posts",
@@ -66,8 +72,8 @@ function tableTemplate(item) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title: title,
-          content: content,
+          title: titleVal,
+          content: contentVal,
         }),
       }
     );

@@ -7,35 +7,44 @@
     <link rel="stylesheet" href="post-style.css" />
   </head>
   <body>
-    <section class="container">
-      <form id="post-form">
-        <div class="post-create-header">
-          <h2>포스트 생성</h2>
-        </div>
-        <hr />
-        <div class="writing">
-          <div class="title">
-            <input
-              type="text"
-              class="input-title"
-              placeholder="제목을 입력해주세요."
-            />
+    <div class="wrapper">
+      <div class="article">
+        <div class="post-body">
+        <form class="post-form">
+          <div class="post-create-header">
+            <h2>포스트 생성</h2>
           </div>
-          <div class="content">
-            <header class="content-header">
-              <!-- 파일, 이미지, 비디오 삽입, 폰트사이즈 변경 등등 들어갈 예정 -->
-            </header>
-            <div class="content-body">
-              <textarea
-                placeholder="내용을 입력하세요"
-                class="input-content"
-              ></textarea>
+          <hr />
+          <div class="writing">
+            <div class="title">
+              <input
+                type="text"
+                class="input-title"
+                placeholder="제목을 입력해주세요."
+              />
+            </div>
+            <div class="content">
+              <header class="content-header">
+                <!-- 파일, 이미지, 비디오 삽입, 폰트사이즈 변경 등등 들어갈 예정 -->
+              </header>
+              <div class="content-body">
+                <textarea
+                  placeholder="내용을 입력하세요"
+                  class="input-content"
+                ></textarea>
+              </div>
             </div>
           </div>
+        </form>
+        <div class="post-button">
+          <button>POST</button>
         </div>
-        <button class="post-button">POST</button>
-      </form>
-    </section>
+      </div>
+      </section>
+    </div>
     <script src="post-create.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
   </body>
 </html>

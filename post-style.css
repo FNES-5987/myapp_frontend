@@ -4,22 +4,31 @@ body {
   margin: 0 auto;
   width: 1080px;
 }
-.post-body {
+.wrapper {
   display: grid;
-  width: 80%;
+  width: 90%;
+  margin: 0 auto;
   grid-template-areas:
   "header header"
   "aside article"
+  "another another"
   "footer footer";
+  grid-template-columns: 1fr 4fr;
 }
-
+.article {
+  width: 100%;
+  display: sticky;
+  height: 100vh;
+  margin-top: 40px;
+  grid-area: article;
+  border: 1px solid black;
+}
 .post-area {
   width: 1080px;
   margin: 0 auto;
 }
 .post-body {
-  width: 80%;
-  border: 1px solid black;
+
   margin: 0 auto;
   padding: 25px;
 }
@@ -52,15 +61,34 @@ table {
   width: 100%;
   border-bottom: 3px solid black;
   border-top: 3px solid black;
-  table-layout: fixed;
+  border-collapse: collapse;
+}
+th {
+  height: 40px;
 }
 tr {
   height: fit-content;
   padding: 10px 0 8px 4px;
 }
 td {
-  text-align: left;
-  font-size: 13px;
+  text-align: center;
+  border: 1px solid gainsboro;
+}
+table tr:first-child td {
+  height: 40px;
+  border-bottom: 1px solid black;
+}
+table td:nth-child(1) {
+  width: 50px;
+}
+table td:nth-child(3) {
+  width: 150px;
+}
+table td:nth-child(4) {
+  width: 100px;
+}
+table td:nth-child(5) {
+  width: 50px;
 }
 .container {
   width: 1080px;
@@ -70,7 +98,6 @@ input {
   width: 100%;
   height: 50px;
   font-size: 20px;
-  padding: 3px;
 }
 textarea {
   width: 100%;
@@ -80,19 +107,20 @@ textarea {
 }
 .create-post-button {
   text-align: right;
+  position: sticky;
+  grid-area: another;
 }
 .post-table {
   display: flex;
 }
-table {
-  width: 100%;
-  border-bottom: 3px solid black;
-  border-top: 3px solid black;
-  table-layout: fixed;
+li {
+  padding-top: 10px;
 }
-th {
-  height: 40px;
+.post-button {
+  text-align: right;
+  position: sticky;
+  grid-area: another;
 }
-td {
-  text-align: center;
+.input-content {
+  padding-top: 50px;
 }
