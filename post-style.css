@@ -59,12 +59,8 @@ body {
 }
 table {
   width: 100%;
-  border-bottom: 3px solid black;
   border-top: 3px solid black;
   border-collapse: collapse;
-}
-th {
-  height: 40px;
 }
 tr {
   height: fit-content;
@@ -72,23 +68,27 @@ tr {
 }
 td {
   text-align: center;
-  border: 1px solid gainsboro;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px;
 }
-table tr:first-child td {
+table tr:first-child th {
   height: 40px;
   border-bottom: 1px solid black;
 }
-table td:nth-child(1) {
+table th:nth-child(1) {
   width: 50px;
 }
-table td:nth-child(3) {
+table th:nth-child(3) {
   width: 150px;
 }
-table td:nth-child(4) {
+table th:nth-child(4) {
   width: 100px;
 }
-table td:nth-child(5) {
+table th:nth-child(5) {
   width: 50px;
+}
+table tr:last-child {
+  border-bottom: 1px solid black;
 }
 .container {
   width: 1080px;
@@ -100,7 +100,11 @@ input {
   font-size: 20px;
 }
 textarea {
-  width: 100%;
+  width: 90%;
+  overflow: hidden;
+  font-weight: 400;
+  padding-top: 40px;
+  margin: 0 auto;
 }
 .content-body > textarea {
   height: 400px;
@@ -123,4 +127,7 @@ li {
 }
 .input-content {
   padding-top: 50px;
+}
+.comment {
+  text-align: center;
 }
