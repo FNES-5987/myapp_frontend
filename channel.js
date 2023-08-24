@@ -31,8 +31,8 @@ function tableTemplate(item) {
   return /*html*/ `
   <tr data-no="${item.no}">
   <td>${item.no}</td>
-  <td><a href="http://localhost:5500/post-view/${item.no}">${truncatedTitle}</a></td>
-  <td>익명</td>
+  <td><a href="http://localhost:5500/post-view.html#${item.no}">${truncatedTitle}</a></td>
+  <td>${item.nickname}</td>
   <td>${formattedDate}</td>
   </tr>
   `;  
