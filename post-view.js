@@ -101,4 +101,54 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
   })
+
+  // 댓글 입력 버튼 클릭 시 동작
+  const commentButton = document.getElementById("comment-button");
+  const commentInput = document.getElementById("comment-input");
+  const commentsContainer = document.getElementById("comments");
+
+  commentButton.addEventListener("click", async () => {
+    const content = commentInput.value;
+
+    if (content.trim() === "") {
+      return;
+    }
+
+    const response = await fetch(
+      `http://localhost:8080/posts/${postNo}/comments`, // 댓글 추가 API 주소
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: content,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      // 댓글 추가 후 화면 갱신
+      loadComments();
+      commentInput.value = "";
+    }
+  });
+
+  // 댓글 불러오기 함수
+  async function loadComments() {
+    const response = await fetch(
+      `http://localhost:8080/posts/${postNo}/comments`
+    );
+    const comments = await response.json();
+
+    commentsContainer.innerHTML = "";
+    comments.forEach((comment) => {
+      const commentElement = document.createElement("div");
+      commentElement.textContent = comment.content;
+      commentsContainer.appendChild(commentElement);
+    });
+  }
+
+  // 초기화 시 댓글 불러오기
+  loadComments();
 });

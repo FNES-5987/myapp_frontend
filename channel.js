@@ -20,7 +20,7 @@ function formatDate(date) {
   }
 }
 
-function tableTemplate(item) {
+function tableTemplate(item, index) {
   const formattedDate = formatDate(item.createdTime);
 
   let truncatedTitle = item.title;
@@ -30,7 +30,7 @@ function tableTemplate(item) {
 
   return /*html*/ `
   <tr data-no="${item.no}">
-  <td>${item.no}</td>
+  <td>${index + 1}</td>
   <td><a href="http://localhost:5500/post-view.html#${item.no}">${truncatedTitle}</a></td>
   <td>${item.nickname}</td>
   <td>${formattedDate}</td>
@@ -51,7 +51,7 @@ function tableTemplate(item) {
       // 최신순 정렬
     data
       .sort((a, b) => a.no - b.no)
-      .forEach((item) => {
-        tbody.insertAdjacentHTML("afterend", tableTemplate(item));
+      .forEach((item, index) => {
+        tbody.insertAdjacentHTML("afterend", tableTemplate(item, index));
       });
 })();
