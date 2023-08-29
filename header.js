@@ -1,11 +1,11 @@
 (()=>{
   const header = document.createElement("div");
   header.style.position = "sticky";
-  header.style.width = "90%";
+  header.style.width = "100%";
   header.style.margin = "0 auto";
   header.style.height = "340px";
   header.style.textAlign = "center";
-  header.style.border = "1px solid black";
+  // header.style.border = "1px solid black";
   header.style.gridArea = "header";
   header.style.marginTop = "30px";
 
@@ -17,6 +17,6 @@
     alt="배너"/></a>
   `;
 
-  
-  document.body.prepend(header);
+  const wrapper = document.querySelector(".wrapper")
+  wrapper.prepend(header);
 })()

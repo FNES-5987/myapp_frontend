@@ -102,13 +102,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   })
 
+  // 댓글 수 표시 엘리먼트 선택
+  const commentCountElement = document.getElementById("comment-count");
+
+  // 댓글 수 가져오기 함수
+  async function loadCommentCount() {
+    const response = await fetch(
+      `http://localhost:8080/posts/${postNo}/commentcount`
+    );
+    const commentCount = await response.json();
+
+    commentCountElement.textContent = `댓글 수: ${commentCount}개`;
+  }
+
+  // 초기 댓글 수 표시
+  loadCommentCount();
+
   // 댓글 입력 버튼 클릭 시 동작
   const commentButton = document.getElementById("comment-button");
   const commentInput = document.getElementById("comment-input");
   const commentsContainer = document.getElementById("comments");
+  const nickname = document.getElementsByClassName("input-nickname");
+  const password = document.getElementsByClassName("input-password");
 
   commentButton.addEventListener("click", async () => {
     const content = commentInput.value;
+    const nicknameVal = nickname[0].value;
+    const passwordVal = password[0].value;
 
     if (content.trim() === "") {
       return;
@@ -122,13 +142,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          nickname: nicknameVal,
+          password: passwordVal,
           content: content,
         }),
       }
     );
 
     if (response.ok) {
-      // 댓글 추가 후 화면 갱신
+      // 댓글 추가 후 댓글 수 갱신 및 화면 갱신
+      loadCommentCount();
       loadComments();
       commentInput.value = "";
     }
@@ -144,11 +167,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     commentsContainer.innerHTML = "";
     comments.forEach((comment) => {
       const commentElement = document.createElement("div");
-      commentElement.textContent = comment.content;
+      commentElement.innerHTML = `
+      <h5>${comment.nickname}</h5>
+      ${comment.content}`
       commentsContainer.appendChild(commentElement);
     });
   }
 
-  // 초기화 시 댓글 불러오기
   loadComments();
 });

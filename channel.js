@@ -31,12 +31,13 @@ function tableTemplate(item, index) {
   return /*html*/ `
   <tr data-no="${item.no}">
   <td>${index + 1}</td>
-  <td><a href="http://localhost:5500/post-view.html#${item.no}">${truncatedTitle}</a></td>
+  <td><a href="http://localhost:5500/post-view.html#${item.no}">${truncatedTitle}</a><div id = "comment-count"></div></td>
   <td>${item.nickname}</td>
   <td>${formattedDate}</td>
   </tr>
   `;  
 }
+
 
 (async()=>{
   const url = "http://localhost:8080/posts";

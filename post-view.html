@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PostView</title>
-    <link rel="stylesheet" href="post-style.css" />
+    <link rel="stylesheet" href="test.css" />
   </head>
   <body>
+    <div class="container">
     <div class="wrapper">
       <div class="article">
         <div id="post-body">
           <!-- 여기에 추가 -->
         </div>
+        <h4><div id="comment-count"></div></h4>
         <div id="comments"></div>
         <div class="comment">
+          <div class="user-info">
+            <input type="text" class="input-nickname" placeholder="닉네임">
+            <input type="password" class="input-password" placeholder="비밀번호">
+          </div>
           <input type="text" id="comment-input" placeholder="댓글을 입력하세요">
           <button id="comment-button">등록</button>
         </div>
@@ -21,9 +27,11 @@
       </div>
       <div class="another"></div>
     </div>
+  </div>
     <script src="sidebar.js"></script>
     <script src="header.js"></script>
     <script src="footer.js"></script>
     <script src="post-view.js"></script>
+    <script src="search.js"></script>
   </body>
 </html>
