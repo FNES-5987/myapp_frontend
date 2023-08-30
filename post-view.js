@@ -130,16 +130,21 @@
 
     commentButton.addEventListener("click", async () => {
       const content = commentInput.value;
-      const nicknameVal = nickname[0].value;
+      let nicknameVal = nickname[0].value;
       const passwordVal = password[0].value;
 
       if (content.trim() === "") {
         return;
       }
-
+    
       if (passwordVal.trim() === "") {
-        alert("페스워드를 입력하세요 후 수정 삭제에 필요합니다.");
+        alert("비밀번호를 입력하세요.");
         return;
+      }
+    
+      // 닉네임이 입력되지 않았을 때 "익명"으로 설정
+      if (nicknameVal.trim() === "") {
+        nicknameVal = "익명";
       }
 
       const response = await fetch(
