@@ -20,7 +20,7 @@ function formatDate(date) {
   }
 }
 
-function tableTemplate(item, index) {
+function tableTemplate(item, index, commentCount) {
   const formattedDate = formatDate(item.createdTime);
 
   let truncatedTitle = item.title;
@@ -28,31 +28,37 @@ function tableTemplate(item, index) {
     truncatedTitle = truncatedTitle.substring(0, 17) + '...';
   }
 
+  const titleWithCommentCount = `${truncatedTitle} [${commentCount}]`;
+
   return /*html*/ `
   <tr data-no="${item.no}">
   <td>${index + 1}</td>
-  <td><a href="http://localhost:5500/post-view.html#${item.no}">${truncatedTitle}</a><div id = "comment-count"></div></td>
+  <td>
+    <a href="http://localhost:5500/post-view.html#${item.no}">${titleWithCommentCount}</a>
+  </td>
   <td>${item.nickname}</td>
   <td>${formattedDate}</td>
   </tr>
   `;  
 }
 
-
-(async()=>{
+async function updateTableAndCommentCounts() {
   const url = "http://localhost:8080/posts";
+  const response = await fetch(url);
+  const result = await response.json();
+  const data = Array.from(result);
 
-    const response = await fetch(url);
-    const result = await response.json();
-    const data = Array.from(result);
+  const table = document.querySelector(".post-table");
+  const tbody = table.querySelector("tbody");
 
-    const table = document.querySelector(".post-table");
-    const tbody = table.querySelector("tbody");
+  // 최신순 정렬
+  data
+    .sort((a, b) => a.no - b.no)
+    .forEach(async (item, index) => {
+      const commentResponse = await fetch(`http://localhost:8080/posts/${item.no}/commentcount`);
+      const commentCount = await commentResponse.json();
+      tbody.insertAdjacentHTML("afterend", tableTemplate(item, index, commentCount));
+    });
+}
 
-      // 최신순 정렬
-    data
-      .sort((a, b) => a.no - b.no)
-      .forEach((item, index) => {
-        tbody.insertAdjacentHTML("afterend", tableTemplate(item, index));
-      });
-})();
+updateTableAndCommentCounts();
