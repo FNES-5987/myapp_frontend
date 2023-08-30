@@ -2,11 +2,7 @@ function formatDate(date) {
   const today = new Date();
   const targetDate = new Date(date);
 
-  if (
-    targetDate.getFullYear() === today.getFullYear() &&
-    targetDate.getMonth() === today.getMonth() &&
-    targetDate.getDate() === today.getDate()
-  ) {
+  if (targetDate.toDateString() === today.toDateString()) {
     return targetDate.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
@@ -20,45 +16,38 @@ function formatDate(date) {
   }
 }
 
-function tableTemplate(item, index, commentCount) {
+function createTableRow(item, index, commentCount) {
   const formattedDate = formatDate(item.createdTime);
 
-  let truncatedTitle = item.title;
-  if (truncatedTitle.length > 20) {
-    truncatedTitle = truncatedTitle.substring(0, 17) + '...';
-  }
-
+  const truncatedTitle = item.title.length > 20 ? item.title.substring(0, 17) + '...' : item.title;
   const titleWithCommentCount = `${truncatedTitle} [${commentCount}]`;
 
-  return /*html*/ `
-  <tr data-no="${item.no}">
-  <td>${index + 1}</td>
-  <td>
-    <a href="http://localhost:5500/post-view.html#${item.no}">${titleWithCommentCount}</a>
-  </td>
-  <td>${item.nickname}</td>
-  <td>${formattedDate}</td>
-  </tr>
-  `;  
+  return `
+    <tr data-no="${item.no}">
+      <td>${index + 1}</td>
+      <td><a href="http://localhost:5500/post-view.html#${item.no}">${titleWithCommentCount}</a></td>
+      <td>${item.nickname}</td>
+      <td>${formattedDate}</td>
+    </tr>`;
 }
 
 async function updateTableAndCommentCounts() {
-  const url = "http://localhost:8080/posts";
-  const response = await fetch(url);
-  const result = await response.json();
-  const data = Array.from(result);
+  try {
+    const response = await fetch("http://localhost:8080/posts");
+    const data = await response.json();
 
-  const table = document.querySelector(".post-table");
-  const tbody = table.querySelector("tbody");
+    const table = document.querySelector(".post-table");
+    const tbody = table.querySelector("tbody");
 
-  // 최신순 정렬
-  data
-    .sort((a, b) => a.no - b.no)
-    .forEach(async (item, index) => {
+    for (const [index, item] of data.reverse().entries()) {
       const commentResponse = await fetch(`http://localhost:8080/posts/${item.no}/commentcount`);
       const commentCount = await commentResponse.json();
-      tbody.insertAdjacentHTML("afterend", tableTemplate(item, index, commentCount));
-    });
+      const tableRow = createTableRow(item, data.length - index - 1, commentCount);
+      tbody.insertAdjacentHTML("beforeend", tableRow);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
 }
 
 updateTableAndCommentCounts();
