@@ -31,7 +31,7 @@ function createTableRow(item, index, commentCount) {
     </tr>`;
 }
 
-async function updateTableAndCommentCounts() {
+async function updateCommentCounts() {
   try {
     const response = await fetch("http://localhost:8080/posts");
     const data = await response.json();
@@ -49,5 +49,4 @@ async function updateTableAndCommentCounts() {
     console.error("An error occurred:", error);
   }
 }
-
-updateTableAndCommentCounts();
+updateCommentCounts();

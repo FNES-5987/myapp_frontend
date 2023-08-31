@@ -29,15 +29,25 @@ function cardTemplate(item) {
     const title = document.getElementsByClassName("input-title");
     const content = document.getElementsByClassName("input-content");
 
-    const nicknameVal = nickname[0].value;
+    let nicknameVal = nickname[0].value;
     const passwordVal = password[0].value;
     const titleVal = title[0].value;
     const contentVal = content[0].value;
 
-    console.log(nicknameVal);
-    console.log(passwordVal);
-    console.log(titleVal);
-    console.log(contentVal);
+    // 닉네임이 입력되지 않았을 때 "익명"으로 설정
+    if (nicknameVal.trim() === "") {
+      nicknameVal = "익명";
+    }
+
+    if (contentVal.trim() === "") {
+      alert("내용을 입력하세요.")
+      return;
+    }
+  
+    if (passwordVal.trim() === "") {
+      alert("비밀번호를 입력하세요.");
+      return;
+    }
     
     const confirmVal = confirm("작성 하시겠습니까?");
     if(confirmVal) {

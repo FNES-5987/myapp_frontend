@@ -134,6 +134,7 @@
       const passwordVal = password[0].value;
 
       if (content.trim() === "") {
+        alert("내용을 입력하세요.")
         return;
       }
     
@@ -146,6 +147,10 @@
       if (nicknameVal.trim() === "") {
         nicknameVal = "익명";
       }
+
+      const confirmVal = confirm("작성하시겠습니까? 작성 후 수정이 불가능합니다.");
+
+      if (confirmVal) {
 
       const response = await fetch(
         `http://localhost:8080/posts/${postNo}/comments`, // 댓글 추가 API 주소
@@ -168,6 +173,7 @@
         loadComments();
         commentInput.value = "";
       }
+    }
     });
 
     // 댓글 불러오기 함수
