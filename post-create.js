@@ -4,10 +4,12 @@ function cardTemplate(item) {
   <div data-no="${item.no}">
     <h3>${item.title}</h3>
     <div class = "post-info">
-    <em>${item.creatorName}</em>
-    <small>${new Date(
-      item.createdTime
-    ).toLocaleString()}</small>
+      <em>${item.creatorName}</em>
+      <small>
+        ${new Date(
+          item.createdTime
+          ).toLocaleString()}
+      </small>
     </div>
     <p>${item.content}</p>
     <hr>
@@ -41,6 +43,11 @@ function cardTemplate(item) {
 
     if (contentVal.trim() === "") {
       alert("내용을 입력하세요.")
+      return;
+    }
+
+    if (titleVal.trim() === "") {
+      alert("제목을 입력하세요.")
       return;
     }
   

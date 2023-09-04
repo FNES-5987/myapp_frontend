@@ -14,6 +14,7 @@
         <em>작성자 : ${postData.nickname}</em>
         <br>
         <small>${new Date(postData.createdTime).toLocaleString()}</small>
+        </div>
         <p>${postData.content}</p>
         <div id="edit-form" style="display: none;">
           <input type="text" id="edit-title" placeholder="제목">
@@ -24,8 +25,7 @@
           <button class="modify-btn">수정</button>
           <button class="delete-btn">삭제</button>
         </div>
-      </div>
-      <br>
+      
     `;
 
     const btnarea = document.querySelector(".content-btn");
@@ -187,9 +187,9 @@
       comments.forEach((comment) => {
         const commentElement = document.createElement("div");
         commentElement.innerHTML = `
-          <h5>${comment.nickname}</h5>
-          <p>${comment.content}</p>
-          <small>${new Date(comment.createdTime).toLocaleString()}</small>
+          <div class="comment-nickname"><span>${comment.nickname}</span></div>
+          <div class="comment-content"><p>${comment.content}</p></div>
+          <div class="comment-time"><span>${new Date(comment.createdTime).toLocaleString()}</span></div>
           <button class="delete-comment-btn" data-comment-id="${comment.id}">삭제</button>
         `;
     
